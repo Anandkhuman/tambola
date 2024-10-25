@@ -16,9 +16,9 @@
             background-color: #1f2a3a;
             color: #fff;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 83vh;
+            flex-direction: column;
+            justify-content: space-between; /* Ensure footer stays at the bottom */
+            min-height: 100vh; /* Take full height of the viewport */
         }
 
         .container {
@@ -29,7 +29,12 @@
             padding: 10px;
             text-align: center;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            flex: 1; /* Allow the container to grow and fill the available space */
         }
+
+        /* Other styles remain unchanged... */
+
+        
 
         .header {
             margin-bottom: 20px;
@@ -202,6 +207,236 @@
             font-size: 10px;
             margin-top: 5px;
         }
+        
+        .board {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+        gap: 1vw;
+        padding: 20px;
+        margin-top: 30px;
+        background-color: #222;
+        border: 3px solid #555;
+        border-radius: 10px;
+        width: 100%;
+        max-width: 700px;
+        max-height: 80vh;
+        }
+        
+        .cell {
+        width: 100%;
+        padding-bottom: 100%;
+        position: relative;
+        background-color: #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-size: 3vw;
+        border-radius: 50%;
+        border: 2px solid #555;
+        }
+        
+        .cell span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        }
+        
+        /* Admin login form adjustments */
+        .admin-login {
+        display: none;
+        position: fixed;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        max-width: 350px;
+        width: 90%;
+        z-index: 1000;
+        }
+        
+        /* Admin panel adjustments */
+        .admin-panel {
+        display: none;
+        padding: 10px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        max-width: 400px;
+        width: 100%;
+        margin-top: 10px;
+        position: fixed;
+        
+        
+        }
+        
+        .custom-alert {
+        position: fixed;
+        top: 10px; /* Increased space from the top */
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(45deg, #ffeb99, #ffd966, #fffae6); /* Gradient background */
+        color: #333; /* Darker text for contrast */
+        padding: 15px; /* Increased padding for better visual balance */
+        border-radius: 8px; /* Slightly smaller border radius */
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3); /* Softer shadow */
+        display: none;
+        z-index: 9999; /* Ensure the alert stays above other elements */
+        font-size: 14px; /* Readable font size */
+        max-width: 90%; /* Ensure the alert doesn't stretch too wide on large screens */
+        text-align: center; /* Center-align the text */
+        overflow: hidden; /* Ensure border animation stays within */
+        position: relative; /* For pseudo-element positioning */
+        }
+        
+        /* Animated border */
+        .custom-alert:before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(90deg, #ffd966, #ffeb99, #fffae6);
+        border-radius: 10px;
+        z-index: -1;
+        background-size: 200% 200%; /* Smoother border animation */
+        animation: fadeIn 1s ease forwards, scaleUp 1s ease-in-out forwards;
+        
+        }
+        
+        /* Border animation */
+        @keyframes borderAnimation {
+        0% {
+        background-position: 0% 0%;
+        }
+        100% {
+        background-position: 200% 200%;
+        }
+        }
+        
+        
+        
+        /* General styling for headers, inputs, buttons, and text in admin-login and admin-panel */
+        .admin-login h2, .admin-panel h2 {
+        color: #333;
+        font-size: 1.5rem;
+        text-align: center;
+        margin-bottom: 1rem;
+        font-weight: bold;
+        color: #3a3a3a;
+        }
+        
+        /* Form labels */
+        .admin-login label, .admin-panel label {
+        color: #555;
+        font-size: 1rem;
+        font-weight: 500;
+        }
+        
+        /* Input styling */
+        .admin-login input[type="text"], 
+        .admin-login input[type="password"], 
+        .admin-panel input[type="text"] {
+        width: 100%;
+        padding: 3px;
+        margin: 0.5rem 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1rem;
+        transition: border-color 0.3s;
+        }
+        
+        .admin-login input[type="text"]:focus, 
+        .admin-login input[type="password"]:focus, 
+        .admin-panel input[type="text"]:focus {
+        border-color: #007bff;
+        outline: none;
+        }
+        
+        /* Button styling */
+        .admin-login button, .admin-panel button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 5px;
+        margin: 0.5rem 0;
+        transition: background-color 0.3s;
+        }
+        
+        .admin-login button:hover, .admin-panel button:hover {
+        background-color: #0056b3;
+        }
+        
+        .admin-login button:active, .admin-panel button:active {
+        background-color: #004494;
+        }
+        
+        /* Panel box shadows for visual depth */
+        .admin-login, .admin-panel {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Ticket list items styling */
+        .ticket-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px;
+        margin-top: 10px;
+        background-color: #f1f1f1;
+        border-radius: 5px;
+        }
+        
+        .ticket-item span {
+        color: #333;
+        }
+        
+        .ticket-item .remove-ticket {
+        background-color: #d9534f;
+        border: none;
+        padding: 5px 10px;
+        color: white;
+        font-size: 0.9rem;
+        border-radius: 3px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        }
+        
+        .ticket-item .remove-ticket:hover {
+        background-color: #c9302c;
+        }
+        
+        
+        /* Media Queries for responsiveness */
+        @media (max-width: 600px) {
+        .board {
+        grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
+        gap: 2vw;
+        }
+        
+        .cell {
+        font-size: 5vw;
+        }
+        }
+        
+        @media (max-width: 400px) {
+        .board {
+        grid-template-columns: repeat(auto-fit, minmax(25px, 1fr));
+        }
+        
+        .cell {
+        font-size: 7vw;
+        }
+        }
     </style>
     <script>
         function updateDateTime() {
@@ -218,7 +453,12 @@
     </script>
 </head>
 <body>
+<div id="content-container" class="content-container">
+    <!-- Tambola Game content will be loaded here -->
+    </div>
     <div class="container">
+    
+    
         <div class="header">
             <div class="profile">
                 <span id="date-time"></span>
@@ -276,11 +516,312 @@
 
         <div class="footer">
             <a href="#" class="nav-btn"><img src="https://github.com/Anandkhuman/Photo/raw/main/home.png" alt="Home"><span>Home</span></a>
-            <a href="#" class="nav-btn"><img src="https://github.com/Anandkhuman/Photo/raw/main/tambola.png" alt="Tambola Game"><span>Tambola</span></a>
+            <a href="#" class="nav-btn" onclick="loadTambolaGame();">
+            <img src="https://github.com/Anandkhuman/Photo/raw/main/tambola.png" alt="Tambola Game">
+            <span>Tambola</span>
+            </a>
+            
             <a href="#" class="nav-btn"><img src="https://github.com/Anandkhuman/Photo/raw/main/ticket.png" alt="Ticket"><span>Ticket</span></a>
             <a href="#" class="nav-btn"><img src="https://github.com/Anandkhuman/Photo/raw/main/result.png" alt="Results"><span>Results</span></a>
         </div>
     </div>
+    <div class="footer">
+    <a href="#" class="nav-btn" onclick="loadHomePage();"><img src="https://github.com/Anandkhuman/Photo/raw/main/home.png" alt="Home"><span>Home</span></a>
+    <a href="#" class="nav-btn" onclick="loadTambolaGame();">
+    <img src="https://github.com/Anandkhuman/Photo/raw/main/tambola.png" alt="Tambola Game">
+    <span>Tambola</span>
+    </a>
+    
+    <a href="#" class="nav-btn"><img src="https://github.com/Anandkhuman/Photo/raw/main/ticket.png" alt="Ticket"><span>Ticket</span></a>
+    <a href="#" class="nav-btn"><img src="https://github.com/Anandkhuman/Photo/raw/main/result.png" alt="Results"><span>Results</span></a>
+    </div>
+    <script type="text/javascript">
+    
+    function loadHomePage() {
+    // Re-display the main container content
+    const homeContent = `
+    <div class="container">
+    
+    
+    <div class="header">
+    <div class="profile">
+    <span id="date-time"></span>
+    <img src="https://github.com/Anandkhuman/Photo/raw/main/logo.jpg" alt="User Avatar" class="avatar">
+    </div>
+    <h1>WELCOME to TAMBOLA GAME!!</h1>
+    </div>
+    
+    <div class="promo">
+    <p>Welcome to the Tambola Game:</p>
+    <h2>Join the Fun and Win Exciting Prizes!</h2>
+    <p>Experience the thrill of Tambola with your friends and family.<br>Start playing now and test your luck!</p>
+    <div class="gift-icon">
+    <img src="https://github.com/Anandkhuman/Photo/raw/main/win.png" alt="Gift">
+    </div>
+    <div class="gift-icon1">
+    <img src="https://github.com/Anandkhuman/Photo/raw/main/win.png" alt="Gift">
+    </div>
+    </div>
+    
+    <div class="services">
+    <h3>Social Media Services —</h3>
+    <div class="icons">
+    <a href="#" class="service youtube">
+    <img src="https://github.com/Anandkhuman/Photo/raw/main/youtube.png" alt="YouTube">
+    </a>
+    <a href="#" class="service facebook">
+    <img src="https://github.com/Anandkhuman/Photo/raw/main/facebook.png" alt="Facebook" style="width: 50px;">
+    </a>
+    <a href="#" class="service instagram">
+    <img src="https://github.com/Anandkhuman/Photo/raw/main/instagram.png" alt="Instagram" style="width: 50px;">
+    </a>
+    <a href="#" class="service telegram">
+    <img src="https://github.com/Anandkhuman/Photo/raw/main/telegram.png" alt="Telegram" style="width: 50px;">
+    </a>
+    <a href="#" class="service x">
+    <img src="https://github.com/Anandkhuman/Photo/raw/main/x.png" alt="Twitter" style="width: 50px;">
+    </a>
+    </div>
+    </div>
+    
+    
+    <div class="tools">
+    <h3>Agents List</h3>
+    <div class="tool-grid">
+    <div class="tool"><a href="https://wa.me/+919089988921" target="_blank">Anand Khuman</a></div>
+    <div class="tool"><a href="https://wa.me/+916009020876" target="_blank">Sadananda Mangang</a></div>
+    <div class="tool"><a href="https://wa.me/+918837073429" target="_blank">Kanta Khuman</a></div>
+    <div class="tool"><a href="https://wa.me/1234567893" target="_blank">Manglem</a></div>
+    <div class="tool"><a href="https://wa.me/1234567894" target="_blank">Yaima</a></div>
+    <div class="tool"><a href="https://wa.me/1234567895" target="_blank">Thoibi</a></div>
+    </div>
+    </div>
+    
+    
+    <div class="footer">
+    <a href="#" class="nav-btn"><img src="https://github.com/Anandkhuman/Photo/raw/main/home.png" alt="Home"><span>Home</span></a>
+    <a href="#" class="nav-btn" onclick="loadTambolaGame();">
+    <img src="https://github.com/Anandkhuman/Photo/raw/main/tambola.png" alt="Tambola Game">
+    <span>Tambola</span>
+    </a>
+    
+    <a href="#" class="nav-btn"><img src="https://github.com/Anandkhuman/Photo/raw/main/ticket.png" alt="Ticket"><span>Ticket</span></a>
+    <a href="#" class="nav-btn"><img src="https://github.com/Anandkhuman/Photo/raw/main/result.png" alt="Results"><span>Results</span></a>
+    </div>
+    </div>
+    <div class="footer">
+    <a href="#" class="nav-btn" onclick="loadHomePage();"><img src="https://github.com/Anandkhuman/Photo/raw/main/home.png" alt="Home"><span>Home</span></a>
+    <a href="#" class="nav-btn" onclick="loadTambolaGame();">
+    <img src="https://github.com/Anandkhuman/Photo/raw/main/tambola.png" alt="Tambola Game">
+    <span>Tambola</span>
+    </a>
+    
+    <a href="#" class="nav-btn"><img src="https://github.com/Anandkhuman/Photo/raw/main/ticket.png" alt="Ticket"><span>Ticket</span></a>
+    <a href="#" class="nav-btn"><img src="https://github.com/Anandkhuman/Photo/raw/main/result.png" alt="Results"><span>Results</span></a>
+    </div>
+    `;
+    
+    // Update the container with the home content
+    document.getElementById('content-container').innerHTML = homeContent;
+    
+    // Restart the datetime update function
+    updateDateTime();
+    setInterval(updateDateTime, 1000);  
+    }
+    
+    
+    function loadTambolaGame() {
+    // Hide all other containers except the footer
+    const allContainers = document.querySelectorAll('.container'); // Adjust the selector as needed
+    allContainers.forEach(container => {
+    container.style.display = 'none';
+    });
+    
+    // Ensure the footer is displayed
+    const footer = document.querySelector('.footer');
+    if (footer) {
+    footer.style.display = 'flex'; // Ensure the footer is displayed and styled correctly
+    }
+    
+    const tambolaPageContent = `
+    <div class="board" id="board"></div>
+    <div class="custom-alert" id="customAlert">Alert message will appear here!</div>
+    
+    <div class="overlay" id="overlay"></div>
+    <div class="admin-login" id="admin-login">
+    <h2>Admin Login</h2>
+    <form id="loginForm">
+    <label for="adminId">Admin ID:</label>
+    <input type="text" id="adminId" required><br><br>
+    <label for="adminPassword">Password:</label>
+    <input type="password" id="adminPassword" required><br><br>
+    <button type="submit">Login</button>
+    </form>
+    </div>
+    <div class="admin-panel" id="adminPanel">
+    <h2>Admin Control Panel</h2>
+    <button id="logoutBtn">Logout</button>
+    <button id="startGame">Start Game</button>
+    <button id="stopGame">Stop Game</button>
+    <button id="refreshBtn">Refresh Page</button>
+    <h3>Add User Ticket</h3>
+    <input type="text" id="userName" placeholder="Enter user name">
+    <button id="addTicket">Add Ticket</button>
+    <div id="ticketList"></div>
+    </div>
+    `;
+    
+    // Show Tambola game content in the content container
+    document.getElementById('content-container').innerHTML = tambolaPageContent;
+    
+    setupTambolaGame(); // Continue with the setup of the game
+    }
+    
+    
+    function setupTambolaGame() {
+    const board = document.getElementById('board');
+    const adminLogin = document.getElementById('admin-login');
+    const overlay = document.getElementById('overlay');
+    const adminPanel = document.getElementById('adminPanel');
+    const ticketList = document.getElementById('ticketList');
+    const startGameBtn = document.getElementById('startGame');
+    const stopGameBtn = document.getElementById('stopGame');
+    const refreshBtn = document.getElementById('refreshBtn');
+    let gameInterval;
+    let calledNumbers = JSON.parse(localStorage.getItem('calledNumbers')) || [];
+    let gameInProgress = JSON.parse(localStorage.getItem('gameInProgress')) || false;
+    
+    function showAlert(message) {
+    const customAlert = document.getElementById('customAlert');
+    customAlert.textContent = message;
+    customAlert.style.display = 'block';
+    
+    if (customAlert.timeoutId) clearTimeout(customAlert.timeoutId);
+    
+    customAlert.timeoutId = setTimeout(() => {
+    customAlert.style.display = 'none';
+    }, 3000);
+    }
+    
+    for (let i = 1; i <= 90; i++) {
+    const cell = document.createElement('div');
+    cell.classList.add('cell');
+    cell.id = `cell-${i}`;
+    const span = document.createElement('span');
+    span.textContent = i;
+    cell.appendChild(span);
+    
+    if (i === 25) {
+    cell.addEventListener('click', () => {
+    adminLogin.style.display = 'block';
+    overlay.style.display = 'block';
+    });
+    }
+    
+    if (calledNumbers.includes(i)) {
+    cell.style.backgroundColor = 'white';
+    cell.style.color = 'black';
+    }
+    
+    board.appendChild(cell);
+    }
+    
+    if (gameInProgress) {
+    resumeGame();
+    }
+    
+    function callRandomNumber() {
+    if (calledNumbers.length >= 90) {
+    showAlert("All numbers have been called!");
+    clearInterval(gameInterval);
+    localStorage.removeItem('gameInProgress');
+    return;
+    }
+    
+    let randomNumber;
+    do {
+    randomNumber = Math.floor(Math.random() * 90) + 1;
+    } while (calledNumbers.includes(randomNumber));
+    
+    calledNumbers.push(randomNumber);
+    localStorage.setItem('calledNumbers', JSON.stringify(calledNumbers));
+    
+    showAlert("Number called: " + randomNumber);
+    
+    const calledCell = document.getElementById(`cell-${randomNumber}`);
+    calledCell.style.backgroundColor = "white";
+    calledCell.style.color = "black";
+    }
+    
+    startGameBtn.addEventListener('click', () => {
+    showAlert("Game Started!");
+    calledNumbers = [];
+    localStorage.setItem('calledNumbers', JSON.stringify(calledNumbers));
+    localStorage.setItem('gameInProgress', JSON.stringify(true));
+    
+    if (gameInterval) clearInterval(gameInterval);
+    gameInterval = setInterval(callRandomNumber, 6000);
+    });
+    
+    stopGameBtn.addEventListener('click', () => {
+    showAlert("Game Stopped!");
+    clearInterval(gameInterval);
+    localStorage.setItem('gameInProgress', JSON.stringify(false));
+    });
+    
+    function resumeGame() {
+    showAlert("Resuming game...");
+    if (gameInterval) clearInterval(gameInterval);
+    gameInterval = setInterval(callRandomNumber, 6000);
+    }
+    
+    refreshBtn.addEventListener('click', () => {
+    location.reload();
+    });
+    
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const adminId = document.getElementById('adminId').value;
+    const adminPassword = document.getElementById('adminPassword').value;
+    
+    if (adminId === 'admin' && adminPassword === 'password') {
+    showAlert('Login successful!');
+    adminLogin.style.display = 'none';
+    overlay.style.display = 'none';
+    adminPanel.style.display = 'block';
+    } else {
+    showAlert('Invalid credentials! Please try again.');
+    }
+    });
+    
+    overlay.addEventListener('click', () => {
+    adminLogin.style.display = 'none';
+    overlay.style.display = 'none';
+    });
+    
+    document.getElementById('addTicket').addEventListener('click', () => {
+    const userName = document.getElementById('userName').value;
+    if (userName) {
+    const ticketDiv = document.createElement('div');
+    ticketDiv.classList.add('ticket-item');
+    ticketDiv.innerHTML = `<span>Ticket for ${userName}</span> <button class="remove-ticket">Remove</button>`;
+    ticketDiv.querySelector('.remove-ticket').addEventListener('click', () => {
+    ticketDiv.remove();
+    });
+    ticketList.appendChild(ticketDiv);
+    document.getElementById('userName').value = '';
+    } else {
+    showAlert('Please enter a user name.');
+    }
+    });
+    
+    logoutBtn.addEventListener('click', () => {
+    adminPanel.style.display = 'none';
+    adminLogin.style.display = 'block';
+    overlay.style.display = 'none';
+    showAlert('Logged out!');
+    });
+    }
+    </script>
 </body>
 </html>
-
